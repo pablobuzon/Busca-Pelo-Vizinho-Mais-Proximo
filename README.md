@@ -3,7 +3,7 @@ Busca-Pelo-Vizinho-Mais-Proximo
 
     Busca-Pelo-Vizinho-Mais-Proximo
     
-    Uma estratégia possível é a busca pelo vizinho mais próximo. Neste
+Uma estratégia possível é a busca pelo vizinho mais próximo. Neste
 caso, escolhemos a cada passo o vizinho ainda não visitado que apresente
 o menor custo (não devemos repetir cidades, sob o risco de introduzir
 ciclos, como nas buscas não ponderadas).
