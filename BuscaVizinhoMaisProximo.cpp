@@ -1,7 +1,9 @@
-	#include <stdio.h>
-	#include <stdlib.h>
-    #include <string.h>	
-    #include <locale.h>
+/*  Algoritmo de busca em um grafo, buscando pelo vizinho mais proximo   */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>	
+#include <locale.h>
     
      
  
@@ -16,10 +18,10 @@
     int achoufinal = 0 ;
     int menorcusto = 99999;
     int menorcaminho[10];
-	int final;
+    int final;
     int qtd;
-	int matriz[10][10];
-	int noAnterior=0;
+    int matriz[10][10];
+    int noAnterior=0;
     
     
     	
@@ -35,21 +37,18 @@
 	fscanf(fp,"%d",&final);
 	fscanf(fp,"%d",&qtd);
 	
-	for(i=0;i<10;i++)     // for para colocar 0 em todo o vetor.
-		{
+	for(i=0;i<10;i++){     // for para colocar 0 em todo o vetor.
 			menorcaminho[i]=0;
         }
     
  	
  	for(i=0;i<10;i++){     // for para preencher a matriz com 0
-         for(x=0;x<10;x++){
+            for(x=0;x<10;x++){
          	   matriz[i][x]=0;
 		 }
 	}
    
-
-	for(i=0;i<qtd;i++)    // for para ler as ligações dos nós e seus determinados custos
-		{
+	for(i=0;i<qtd;i++){    // for para ler as ligaï¿½ï¿½es dos nï¿½s e seus determinados custos
 			fscanf(fp,"%d%d%d",&a,&b,&c);
 			matriz[a][b]=c;
         }
@@ -71,60 +70,50 @@
 	       
              for(j=0;j<10;j++){
          	        
-         	     
-                 if(matriz[noAtual][j] < menorcusto && matriz[noAtual][j] > 0 && j != noAnterior  ){   // se o custo que está sendo verificado no momento for menor que o menor custo já salvo, ele salva o atual
-                 	
-					 menorcusto = matriz[noAtual][j];    // o custo que foi verificado recebe o menor custo
-                 	noDeMenorCusto = j;          // noDeMenorCusto recebe a posição destino do no atual.
+                 if(matriz[noAtual][j] < menorcusto && matriz[noAtual][j] > 0 && j != noAnterior  ){   // se o custo que estï¿½ sendo verificado no momento for menor que o menor custo jï¿½ salvo, ele salva o atuall
+			menorcusto = matriz[noAtual][j];    // o custo que foi verificado recebe o menor custo
+                 	noDeMenorCusto = j;          // noDeMenorCusto recebe a posiï¿½ï¿½o destino do no atual.
                     }else{
                     	if(matriz[noAtual][j] > 0 && j == final){         // se o custo for maior que 0 e j for igual o final ele grava j e acaba a busca
                     		achoufinal = 1; noDeMenorCusto = j; j=10;
                     	}
                     }
-			      }
-			         
-					
-				
-				noAnterior=noAtual;     // noAnterior recebe o no atual para que na proxima vez ele seja o anterior e não possa ser verificado
-             }else{
-             
-             printf("Destino encontrado");      // se o no atual for o no final passado no arquivo, ele escreve na tela "Destino encontrado".
-             break;
-             i=10;
-            }
-          
-		  for(x=0;x<10;x++){     
-       
-          if(menorcaminho[x] == noDeMenorCusto){     // verifica se o no de menor custo ja existe no vetor de menor caminho
-			  printf("Destino Nao encontrado");    //    se ja existir, ele exibe "Destino Nao encontrado"
-          	i=10;      //  i recebe 10 para sair do for
-            break;
-          }else{
-               if(menorcaminho[x] == 0){           //   se o vetor menorcaminho estiver em uma posição igual a zero, significa que é o final do arquivo
-              
-	         noAtual = noDeMenorCusto;       // o noAtual passa a ser o proximo nó de menor custo
-	    
-	         menorcaminho[i+1]=noDeMenorCusto;    // o no de menor custo é atribuido no final do vetor.
-	         menorcusto=9999999;       // menorcusto recebe um valor alto para que na proxima vez possa ser comparado de novo.
-	         break;
-	        }
 	      }
-		}
-		     
-          }
-           
-        
-		
-     
-		printf("\nMelhor Caminho = ");
+			         
+	      noAnterior=noAtual;     // noAnterior recebe o no atual para que na proxima vez ele seja o anterior e nï¿½o possa ser verificado
+             }else{
+                 printf("Destino encontrado");      // se o no atual for o no final passado no arquivo, ele escreve na tela "Destino encontrado".
+                 break;
+                 i=10;
+               }
+          
+           for(x=0;x<10;x++){     
+       
+                  if(menorcaminho[x] == noDeMenorCusto){     // verifica se o no de menor custo ja existe no vetor de menor caminho
+			  printf("Destino Nao encontrado");    //    se ja existir, ele exibe "Destino Nao encontrado"
+          	          i=10;      //  i recebe 10 para sair do for
+                          break;
+                       }else{
+                           if(menorcaminho[x] == 0){           //   se o vetor menorcaminho estiver em uma posiï¿½ï¿½o igual a zero, significa que ï¿½ o final do arquivo
+              
+	                          noAtual = noDeMenorCusto;       // o noAtual passa a ser o proximo nï¿½ de menor custo
+	                          menorcaminho[i+1]=noDeMenorCusto;    // o no de menor custo ï¿½ atribuido no final do vetor.
+	                          menorcusto=9999999;       // menorcusto recebe um valor alto para que na proxima vez possa ser comparado de novo.
+	                          break;
+	                      }
+	               } 
+	        }
+	 	     
+            }
+       
+              printf("\nMelhor Caminho = ");
 		 
-		 for(i=0;i<10;i++)
-		{
+		 for(i=0;i<10;i++){
 			if(menorcaminho[i] > 0)       
-			printf("%d",menorcaminho[i]);                 // exibe na tela as posições do vetor de menor caminho maior que 0
-        }  
+			printf("%d",menorcaminho[i]);                 // exibe na tela as posiï¿½ï¿½es do vetor de menor caminho maior que 0
+                 }  
 	
-	    	printf("\n");
+	    	 printf("\n");
 	
 	fclose (fp);
 
