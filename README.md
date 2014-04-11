@@ -22,4 +22,4 @@ Para este exemplo foi usado um arquivo .txt, que é especificado da seguinte for
 3 3 8           ||
 3 7 9           ||
 3 6 4           ||
-3 5 2           ||
+3 5 2           || 
